@@ -30,7 +30,8 @@ from sklearn.preprocessing import StandardScaler
 from sklearn import model_selection
 from sklearn.externals import joblib
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import precision_score, recall_score, confusion_matrix, f1_score
+from sklearn.metrics import precision_score, recall_score, confusion_matrix
+from sklearn.metrics import f1_score
 from sklearn.model_selection import cross_val_predict
 
 # Class Entropy to calculate URL entropy.
@@ -39,6 +40,7 @@ from sklearn.model_selection import cross_val_predict
 # Entropy is calculated using Shannon Entropy - 
 # https://en.wiktionary.org/wiki/Shannon_entropy
 # http://pythonfiddle.com/shannon-entropy-calculation/
+
 
 class Entropy():
     def __init__(self, data):
@@ -60,7 +62,6 @@ class Entropy():
 
 # Class URLFeatures extracts specific features from URLs.
 class URLFeatures():
-
     # Bag Of Words method is used for text analysis.
     # Here URLs are described by word occurrences while completely 
     # ignoring the relative position information of the words in 
@@ -131,6 +132,7 @@ class URLFeatures():
             counter += 1
         if '.pdf' in url:
             counter += 1
+
         # Phishing can use social engineering to lure victims to
         # click on malicious links. The use of the word free may
         # be included within URLs to trick users in visiting 
@@ -141,6 +143,7 @@ class URLFeatures():
             counter += 1
         if 'FREE' in url:
             counter += 1
+
         # .onion and .tor references the use of tor. Such domains
         # are suspicious and according to RFC 7686 should be kept
         # off public internet.
@@ -321,6 +324,8 @@ class RetrieveData():
 # classes the URLs as safe. Any URLs classed as not safe may be malicious.
 # Although blacklists and resources such as Google safebrowsing cannot predict
 # malicious URLs, the appearance of a URL in these lists is a powerful feature. 
+
+
 class SafeBrowse():
     def __init__(self, apikey):
         self.safe_base = 'https://safebrowsing.googleapis.com/v4/threatMatches:find?key=%s' % (apikey)
@@ -379,6 +384,7 @@ class SafeBrowse():
                 return 0
         except:
             return 0 
+
 # Extract features function extracts all features from URLs and stores it in a
 # feature list. This list can then be returned and writen to a csv file.
 def extract_features(url):
@@ -511,7 +517,7 @@ def create_dataset():
 
     feature_file.close()
 
-# Train model function trains a Logistic Regression classifier
+# Train model function trains a classifier
 # on the URL dataset and saves the configuration in the form of
 # a pickle file.
 def train_model():
@@ -536,7 +542,7 @@ def train_model():
     #X_train_scale = s.fit_transform(X_train)
     #X_test_scale = s.fit_transform(X_test)
 
-    # Train Logisitic Regression algorithm on training dataset.
+    # Train Random forest algorithm on training dataset.
     clf = ske.RandomForestClassifier(n_estimators=50)   
     clf.fit(X_train, y_train)
 
@@ -550,7 +556,6 @@ def train_model():
     print("\t[*] F1 Score: ", round(f*100, 2), '%')
 
     # Save the configuration of the classifier and features as a pickle file.
-    
     all_features = X.shape[1]
     features = []
 
@@ -715,7 +720,7 @@ def main():
     parser.add_argument('-b', '--benign_update', nargs='*', help='Update benign URL data.')
     parser.add_argument('-m', '--malicious_update', nargs='*', help='Update malicious URL data.')
     parser.add_argument('-g', '--generate_data', nargs='*', help='Generate the URL dataset.')
-    parser.add_argument('-t', '--train', nargs='*', help='Train Logistic Regression Algorithm.')
+    parser.add_argument('-t', '--train', nargs='*', help='Train Random Forest Algorithm.')
     parser.add_argument('-v', '--virustotal', nargs='*', help='Check prediction using Virus Total.')
     parser.add_argument('-s', '--survey', nargs='*', help='Evaluate Program using Survey.')
 
@@ -755,9 +760,9 @@ def main():
         except:
             print(colored("\n[-] ", 'red') + "Error: Feature extraction unsuccessful.\n")
     
-    # Trains Logistic Regression algorithm on URL dataset.
+    # Trains algorithm on URL dataset.
     if args.train is not None:
-        print('\n[+] Training Logistic Regresson model...\n')
+        print('\n[+] Training Random Forest model...\n')
         try:    
             train_model()
             print(colored("\n[*] ", 'green') + "Model successfully trained.")
