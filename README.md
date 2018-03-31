@@ -63,3 +63,9 @@ python3 mlurl.py -s
 ```
 python3 mlurl.py -h
 ```
+## Test Data:
+The program is trained using malicious URLs and URLs that have specifically been linked to ransomware.
+
+Test data for the program can be found here:
+* https://openphish.com/feed.txt
+* https://ransomwaretracker.abuse.ch/blocklist/
