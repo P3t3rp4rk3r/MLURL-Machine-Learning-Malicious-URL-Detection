@@ -13,13 +13,13 @@ https://www.surveymonkey.de/r/GNYBKM6
 * Analyses and Extracts features from URLs to determine if a file is malicious or not.
 * Features include: Entropy, Bag Of Words, Contain IP address, URL Length, Special Characters, Suspicious Strings, Number Of Digits, Populatiry and Google Safebrowsing verdict.
 * The selected features are both static and external.   
-* Cross-Analyse results with Virus Total.
+* Correlate results with Virus Total.
 
 ## Install:
 ```
 git clone https://github.com/callumlock/MLURL-Machine-Learning-Malicious-URL-Detection.git
 
-cd MLRD-Machine-Learning-Ransomware-Detection
+cd MLURL-Machine-Learning-Malicious-URL-Detection
 
 sudo pip3 install -r requirements.txt
 ```
@@ -56,7 +56,7 @@ python3 mlurl.py -g
 ```
 ### Open Survey:
 ```
-python3 mlrd.py -s
+python3 mlurl.py -s
 ```
 
 ### Display Help Information:
