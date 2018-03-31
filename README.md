@@ -2,7 +2,7 @@
 MLURL is a machine learning based URL analyser written in Python3 that can be used to detect malicious URLs.
 
 ## Important Information:
-* Due to restrictions with access to Google Safebrowsing API, please do not run the mlurl.py with the -g (generate dataset) option during evaluation. The API only allows for a maximum of 10,000 requests per 24 hours. 
+* Due to restrictions with access to Google Safebrowsing API, please do not run mlurl.py with the -g (generate dataset) option during evaluation. The API only allows for a maximum of 10,000 requests per 24 hours. 
 * Using mlurl.py with the -g option will take approximately between 2-3 hours due to feature extraction.
 * mlurl.py -g can be used if you sign up to Google Cloud and use your own API key. 
 
@@ -14,31 +14,49 @@ MLURL is a machine learning based URL analyser written in Python3 that can be us
 
 ## Install:
 ```
-git clone https://github.com/callumlock/MLRD-Machine-Learning-Ransomware-Detection.git
+git clone https://github.com/callumlock/MLURL-Machine-Learning-Malicious-URL-Detection.git
 
 cd MLRD-Machine-Learning-Ransomware-Detection
 
 sudo pip3 install -r requirements.txt
-
+```
 ## Usage
 
+### Train Model:
+```
+python3 mlurl.py -t
+```
 ### Basic Usage:
-python3 mlrd.py 'FILE TO ANALYSE'
+```
+python3 mlurl.py -c 'URL TO ANALYSE'
+```
 
 ### Usage with Reputation Checking:
-python3 mlrd.py 'FILE TO ANALYSE' -v
+```
+python3 mlurl.py -c 'URL TO ANALYSE' -v
+```
 
-python3 mlrd.py 'FILE TO ANALYSE ' -t
+### Usage with new URL lists:
+Update benign URL dataset.
+```
+python3 mlurl.py -b
+```
+Update malicious URL dataset.
+```
+python3 mlurl.py -m
+```
+### Usage to generate new dataset using updated URL lists.
 
-python3 mlrd.py 'FILE TO ANALYSE' -z
-
-python3 mlrd.py 'FILE TO ANALYSE' -vtz
-
-### Display Extracted Features for Input File:
-python3 mlrd.py 'FILE TO ANALYSE' -d
-
+Please read the important information section before using this option.
+```
+python3 mlurl.py -g
+```
 ### Open Survey:
+```
 python3 mlrd.py -s
+```
 
 ### Display Help Information:
-python3 mlrd.py -h
+```
+python3 mlurl.py -h
+```
