@@ -69,3 +69,4 @@ The program is trained using malicious URLs and URLs that have specifically been
 Test data for the program can be found here:
 * https://openphish.com/feed.txt
 * https://ransomwaretracker.abuse.ch/blocklist/
+* https://www.phishtank.com/
