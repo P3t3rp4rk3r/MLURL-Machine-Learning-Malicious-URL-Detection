@@ -695,7 +695,7 @@ def virus_total(result, url):
 
 # Open up survey to evaluate program.
 def survey_mail():
-    print('\n[*] Opening up survey in browser.')
+    print('\n[*] Opening up survey in browser.\n')
     webbrowser.open('https://www.surveymonkey.de/r/GNYBKM6', new=2)
 
 # Check valid URL function checks whether or not the input

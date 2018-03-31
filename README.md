@@ -1,6 +1,9 @@
 # MLURL Machine Learning Malicious URL Detection
 MLURL is a machine learning based URL analyser written in Python3 that can be used to detect malicious URLs.
 
+## Evaluate using survey here:
+https://www.surveymonkey.de/r/GNYBKM6
+
 ## Important Information:
 * Due to restrictions with access to Google Safebrowsing API, please do not run mlurl.py with the -g (generate dataset) option during evaluation. The API only allows for a maximum of 10,000 requests per 24 hours. 
 * Using mlurl.py with the -g option will take approximately between 2-3 hours due to feature extraction.
